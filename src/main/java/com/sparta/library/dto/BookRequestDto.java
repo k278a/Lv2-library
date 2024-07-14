@@ -1,22 +1,22 @@
 package com.sparta.library.dto;
 
-public class BookRequsetDto {
+public class BookRequestDto {
     private String title;
     private String author;
     private String publisher;
     private String language;
     private String date;
 
-    public BookRequsetDto() {
+    public BookRequestDto() {
 
     }
 
-    public BookRequsetDto(BookRequsetDto bookRequsetDto) {
-        this.title = bookRequsetDto.getTitle();
-        this.author = bookRequsetDto.getAuthor();
-        this.publisher = bookRequsetDto.getPublisher();
-        this.language = bookRequsetDto.getLanguage();
-        this.date = bookRequsetDto.getDate();
+    public BookRequestDto(BookRequestDto bookRequestDto) {
+        this.title = bookRequestDto.getTitle();
+        this.author = bookRequestDto.getAuthor();
+        this.publisher = bookRequestDto.getPublisher();
+        this.language = bookRequestDto.getLanguage();
+        this.date = bookRequestDto.getDate();
     }
 
     public String getTitle() {

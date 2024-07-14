@@ -1,13 +1,12 @@
 package com.sparta.library.service;
 
-import com.sparta.library.dto.BookRequsetdto;
-import com.sparta.library.dto.BookResponsedto;
+import com.sparta.library.dto.BookRequestDto;
+import com.sparta.library.dto.BookResponseDto;
 import com.sparta.library.entity.Book;
-import com.sparta.library.Controller.LibraryController;
 import com.sparta.library.repository.BookRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 
@@ -19,14 +18,23 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public BookResponsedto createBook(BookRequsetdto bookRequsetdto){
-        Book book = new Book(bookRequsetdto); // 리팩토링 대상
+    public BookResponseDto createBook(BookRequestDto bookRequestDto){
+        Book book = new Book(bookRequestDto); // 리팩토링 대상
         Book savedBook = bookRepository.save(book);
-        return new BookResponsedto(savedBook);
+        return new BookResponseDto(savedBook);
     }
 
-    public List<BookResponsedto> getChoicebook(Long id){
-        List<Book> book = bookRepository.findAllByOrderByModifiedAtDesc();
+    public BookResponseDto getChoiceBook(Long id){
+        return new BookResponseDto(bookRepository.findById(id).get());
+    }
+
+    public List<BookResponseDto> getBooks(){
+        List<Book> book  = bookRepository.findAllByOrderByModifiedAtAsc();
+        List<BookResponseDto> bookResponseDtos = new ArrayList<>();
+        for (Book book1 : book){
+            bookResponseDtos.add(new BookResponseDto(book1));
+        }
+        return bookResponseDtos;
     }
 
 
